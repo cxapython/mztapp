@@ -7,7 +7,7 @@
 import asyncio
 import aiohttp
 from logger.log import crawler
-from utils import proxy_helper
+# from utils import proxy_helper
 import async_timeout
 from collections import namedtuple
 from config.config import *
@@ -104,21 +104,21 @@ class Crawler():
             await asyncio.ensure_future(asyncio.wait(t))
             index += limit + 1
 
-    async def get_proxy(self) -> Optional[str]:
-        """
-        获取代理
-        """
-        while True:
-            proxy = await proxy_helper.get_proxy(isown=1, protocol=2, site='dianping')
-            if proxy:
-                host = proxy[0].get('ip')
-                port = proxy[0].get('port')
-                ip = f"http://{host}:{port}"
-                return ip
-            else:
-                crawler.info("代理超时开始等待")
+    # async def get_proxy(self) -> Optional[str]:
+    #     """
+    #     获取代理
+    #     """
+    #     while True:
+    #         proxy = await proxy_helper.get_proxy(isown=1, protocol=2, site='dianping')
+    #         if proxy:
+    #             host = proxy[0].get('ip')
+    #             port = proxy[0].get('port')
+    #             ip = f"http://{host}:{port}"
+    #             return ip
+    #         else:
+    #             crawler.info("代理超时开始等待")
 
-                await asyncio.sleep(5)
+    #             await asyncio.sleep(5)
 
     async def init_session(self):
         """
